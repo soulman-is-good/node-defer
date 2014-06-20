@@ -1,0 +1,23 @@
+{
+  "name": "defer",
+  "version": "0.0.1",
+  "description": "Deferred object with when implementation",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/soulman-is-good/node-defer.git"
+  },
+  "keywords": [
+    "node.js",
+    "deferred"
+  ],
+  "author": "Maxim Savin <soulman.is.good@gmail.com>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/soulman-is-good/node-defer/issues"
+  },
+  "homepage": "https://github.com/soulman-is-good/node-defer"
+}
