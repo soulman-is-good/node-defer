@@ -1,5 +1,5 @@
 {
-  "name": "defer",
+  "name": "node-defer",
   "version": "0.0.1",
   "description": "Deferred object with when implementation",
   "main": "index.js",
@@ -12,7 +12,9 @@
   },
   "keywords": [
     "node.js",
-    "deferred"
+    "deferred",
+    "promise",
+    "promises"
   ],
   "author": "Maxim Savin <soulman.is.good@gmail.com>",
   "license": "ISC",
