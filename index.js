@@ -11,9 +11,7 @@ var Deferred = function deferred (initFunc) {
   var isDone = false;
   var result_args = [];
 
-  typeof initFunc === 'function' && initFunc.call(this);
-
-  this.isDone = function () {
+  this.isDone = this.isCompleted = function () {
     return isDone;
   };
 
@@ -60,7 +58,7 @@ var Deferred = function deferred (initFunc) {
     return this;
   };
 
-  this.error = this.fail = function (cb) {
+  this.error = this.fail = this.catch = function (cb) {
     typeof cb === 'function' || (cb = function () {
     });
     if (isFailed) {
@@ -74,20 +72,39 @@ var Deferred = function deferred (initFunc) {
   this.then = function (doneCb, failCb) {
     typeof doneCb === 'function' || (doneCb = function () {
     });
-    typeof failCb === 'function' || (failCb = function () {
-    });
+    typeof failCb === 'function' || (failCb = false);
     if (isDone) {
       doneCb.apply(this, result_args);
       return this;
     }
-    if (isFailed) {
+    if (isFailed && failCb) {
       failCb.apply(this, result_args);
       return this;
     }
     doneCbs.push(doneCb);
-    failCbs.push(failCb);
+    failCb && failCbs.push(failCb);
     return this;
   };
+	
+	this.complete = this.finally = function(cb){
+		if(isDone) {
+			cb.bind(this, null).apply(this, result_args);
+			return this;
+		}
+		if(isFailed) {
+			cb.apply(this, result_args);
+			return this;
+		}
+		doneCbs.push(cb.bind(this, null));
+		failCbs.push(cb);
+		return this;
+	};
+
+	if('function' === typeof this) {
+		return new Deferred(initFunc);
+	}
+	
+  typeof initFunc === 'function' && initFunc.call(this);
 
   return this;
 };

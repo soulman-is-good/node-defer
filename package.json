@@ -1,6 +1,6 @@
 {
   "name": "node-defer",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Deferred object with when implementation",
   "main": "index.js",
   "scripts": {
