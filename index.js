@@ -51,7 +51,7 @@ var Deferred = function deferred (initFunc) {
     typeof cb === 'function' || (cb = function () {
     });
     if (isDone) {
-      cb.call(this, result_args);
+      cb.apply(this, result_args);
       return this;
     }
     doneCbs.push(cb);
@@ -62,7 +62,7 @@ var Deferred = function deferred (initFunc) {
     typeof cb === 'function' || (cb = function () {
     });
     if (isFailed) {
-      cb.call(this, result_args);
+      cb.apply(this, result_args);
       return this;
     }
     failCbs.push(cb);
